@@ -1,1 +1,27 @@
-<p>edit...</p>
+
+<form onsubmit="return false;">
+  <input type="hidden" name="id" value="<%=id%>" />
+  <h3><%=(!!id)?'Edit':'Add new'%> customer</h3>
+  <div class="form-fields">
+    <p>
+      <label>Name:</label>
+      <input name="name" value="<%=name%>"/>
+    </p>
+    <p>
+      <label>Type:</label>
+      <select name="type" value="<%=type%>">
+        <option value="">--Please choose an option--</option>
+        <option <%=(type == '1')?"selected":""%> value="1">INDIVIDUAL</option>
+        <option <%=(type == '2')?"selected":""%> value="2">ENTITY</option>
+      </select>
+    </p>
+    <p>
+      <label>Customer No:</label>
+      <input name="userNumber" value="<%=userNumber%>"/>
+    </p>
+  </div>
+  <div class="form-actions">
+    <button type="submit">Ok</button>
+    <button type="button" data-action="cancel">Cancel</button>
+  </div>
+</form>

@@ -1,38 +1,74 @@
 import userRowTmpl from './templates/user-row.html';
 import { openModal } from './modal';
 
+let userTable;
+
+class UserTable {
+  constructor() {
+    this.container = document.querySelector('article.container > section > .content');
+    this.data = [];
+    this.listeners = null;
+  }
+
+  updateData(data) {
+    this.data = data;
+  }
+
+  cleanContent() {
+    this.container.innerHTML = '';
+  }
+
+  renderContent() {
+    this.removeListeners();
+    this.cleanContent();
+
+    const nodes = this.data.map(userRowTmpl);
+    this.container.insertAdjacentHTML('beforeend', nodes.join(''));
+    this.listeners = this.addListeners();
+  }
+
+  addListeners() {
+    if (!this.container) {
+      return () => {};
+    }
+    this.container.addEventListener('click', this.clickEventListener.bind(this));
+    return () => {
+      this.container.removeEventListener('click', this.clickEventListener.bind(this));
+    };
+  }
+
+  removeListeners() {
+    this.listeners && this.listeners();
+    this.listeners = null;
+  }
+
+  clickEventListener({ target }) {
+    if (target && target.nodeName === 'BUTTON') {
+      const id = target.getAttribute('data-id');
+      const action = target.getAttribute('data-action');
+      const data = (this.data || []).find((customer) => customer.id == id);
+      openModal({action, ...data});
+    }
+    return;
+  }
+}
+
+export const init = () => {
+  userTable = new UserTable();
+};
 export const renderContent = (data) => {
-  const container = document.querySelector('article.container > section > .content');
-  if (!container || !data.length) {
+  if (!userTable) {
     return null;
   }
-  // remove obsolete listeners and content
-  addListeners(container)();
-  container.innerHTML = '';
 
-  // setup new content and listeners
-  const nodes = data.map(userRowTmpl);
-  container.insertAdjacentHTML('beforeend', nodes.join(''));
-  addListeners(container);
+  userTable.updateData(data);
+  userTable.renderContent();
 };
 
 export const setupAddClientAction = () => {
-  const addClient = document.querySelector('.add-client-row');
-  addClient && addClient.addEventListener('click', clickEventListener);
-};
-
-const clickEventListener = ({ target }) => {
-  if (target && target.nodeName === 'BUTTON') {
-    const id = target.getAttribute('data-id');
-    const action = target.getAttribute('data-action');
-    openModal({id, action});
+  if (!userTable) {
+    return null;
   }
-  return;
-}
-
-const addListeners = (container) => {
-  container && container.addEventListener('click', clickEventListener);
-  return () => {
-    container && container.removeEventListener('click', clickEventListener);
-  };
-}
+  const addClient = document.querySelector('.add-client-row');
+  addClient && addClient.addEventListener('click', userTable.clickEventListener.bind(userTable));
+};
