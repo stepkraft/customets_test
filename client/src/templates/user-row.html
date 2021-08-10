@@ -1,0 +1,10 @@
+<div>
+  <!-- <div class='table-cell'><%=id%></div> -->
+  <div class='table-cell'><%=name%></div>
+  <div class='table-cell'><%=(type == 1 ? 'INDIVIDUAL' : 'ENTITY')%></div>
+  <div class='table-cell'><%=userNumber%></div>
+  <div class='table-cell actions'>
+    <button type="button" data-id="<%=id%>" data-action='edit'>Edit</button>
+    <button type="button" data-id="<%=id%>" data-action='remove'>Remove</button>
+  </div>
+</div>

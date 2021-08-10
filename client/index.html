@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <base href="/" target="_blank">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; child-src 'self'; connect-src 'self'; font-src 'self'; frame-src 'self'; img-src 'self'; media-src 'self'; object-src 'none'; style-src 'self';">
+</head>
+<body>
+    <div class="root">
+        <header>
+            <h1>Customers</h1>
+        </header>
+        <article class="container">
+            <section class="filters-block">
+                <h3>Filters</h2>
+                <div>
+                    <label>Type</label>
+                    <select name="type" class="type-filter">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">INDIVIDUAL</option>
+                        <option value="2">ENTITY</option>
+                    </select>
+                </div>
+                <!-- <div>
+                    <label>Name or customer No</label>
+                    <input type="text" value='' />
+                </div> -->
+            </section>
+            <section>
+                <div class="add-client-row">
+                    <button type="button" data-action="edit">Add client</button>
+                </div>
+                <div class="table header">
+                    <!-- <div class='table-cell'>ID</div> -->
+                    <div class='table-cell'>Name</div>
+                    <div class='table-cell'>Type</div>
+                    <div class='table-cell'>Customer No</div>
+                    <div class='table-cell'>Actions</div>
+                </div>
+                <hr />
+                <div class="table content" />
+            </section>
+        </article>
+    </div>
+    <!-- The Modal -->
+    <div id="modal" class="modal">
+        <!-- Modal content -->
+        <span class="close">&times;</span>
+        <div class="modal-content" />
+    </div>
+</body>
+</html>
