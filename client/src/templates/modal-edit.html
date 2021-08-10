@@ -4,20 +4,20 @@
   <h3><%=(!!id)?'Edit':'Add new'%> customer</h3>
   <div class="form-fields">
     <p>
-      <label>Name:</label>
-      <input name="name" value="<%=name%>"/>
+      <label>Name*:</label>
+      <input name="name" value="<%=name%>" required maxlength="255"/>
     </p>
     <p>
-      <label>Type:</label>
-      <select name="type" value="<%=type%>">
+      <label>Type*:</label>
+      <select name="type" value="<%=type%>" required>
         <option value="">--Please choose an option--</option>
         <option <%=(type == '1')?"selected":""%> value="1">INDIVIDUAL</option>
         <option <%=(type == '2')?"selected":""%> value="2">ENTITY</option>
       </select>
     </p>
     <p>
-      <label>Customer No:</label>
-      <input name="userNumber" value="<%=userNumber%>"/>
+      <label>Customer No*:</label>
+      <input name="userNumber" value="<%=userNumber%>" required minlength="13" maxlength="13" pattern="[0-9]{13}" />
     </p>
   </div>
   <div class="form-actions">
