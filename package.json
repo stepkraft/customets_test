@@ -2,9 +2,8 @@
   "name": "customers",
   "version": "1.0.0",
   "scripts": {
-    "run::client": "webpack serve --config client/webpack.config.js --open",
-    "build::client": "webpack --config client/webpack.config.js",
-    "run::server": "echo \"Error: no server specified\" && exit 1",
+    "dev": "webpack serve --open",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -25,7 +24,10 @@
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "rxjs": "^7.3.0"
+  },
   "keywords": [],
   "description": ""
 }
