@@ -1,3 +1,5 @@
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import { fromEvent } from 'rxjs';
 import { combineLatestWith, map, tap } from 'rxjs/operators';
 import { filters$, filterData, setupFilterAction } from './filters';

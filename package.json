@@ -25,7 +25,10 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "core-js": "^3.16.1",
     "handlebars": "^4.7.7",
+    "regenerator-runtime": "^0.13.9",
     "rxjs": "^7.3.0"
   },
   "keywords": [],
